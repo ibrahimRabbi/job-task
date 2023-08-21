@@ -1,0 +1,14 @@
+.section{
+    background-image: linear-gradient(to right, rgb(228, 181, 94), rgba(246, 246, 250, 0)), url(../../public/banner2.jpg);
+}
+.banner{
+    line-height: 60px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 50px;
+    font-family:sans-serif;   
+}
+
+.navbarr{
+    background-color: rgb(228, 181, 94) ;
+}
