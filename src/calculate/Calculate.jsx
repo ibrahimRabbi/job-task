@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import { BsArrowLeftRight } from "react-icons/bs";
 
-const Calculate = () => {
-    const [data, setData] = useState({})
-    const distance = data.distance || 0
-    const weight = data.weight || 1
+const Calculate = ({ dataObj }) => {
+    console.log(dataObj)
+   // const [data, setData] = useState({})
+    const distance = dataObj.distance || 0
+    const weight = dataObj.weight || 1
     let subTotal = 0;
     
 
@@ -20,11 +21,11 @@ const Calculate = () => {
     }
     
      
-    useEffect(() => {
-        fetch('http://localhost:5000/location')
-            .then(res => res.json())
-            .then(res => setData(res))
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/location')
+    //         .then(res => res.json())
+    //         .then(res => setData(res))
+    // }, [])
     
     
     
@@ -34,7 +35,7 @@ const Calculate = () => {
             <div className='flex justify-between items-center mt-2 text-gray-600 font-semibold w-[90%] text-xl mx-auto'>
                 <p>FROM: Dhaka</p>
                 <BsArrowLeftRight />
-                <p>TO: {data.districtName}</p>
+                <p>TO: {dataObj.districtName}</p>
             </div>
             <div className='mt-11'>
                 <hr className='border-2 border-blue-600 ' />

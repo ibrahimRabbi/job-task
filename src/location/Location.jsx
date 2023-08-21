@@ -69,11 +69,8 @@ const Location = () => {
         { "district": "Rangpur", "distance_from_dhaka": 335 },
         { "district": "Thakurgaon", "distance_from_dhaka": 415 }
     ]
+
     const navigate = useNavigate()
-
-
-
-
 
     const locationHandler = (e) => {
         e.preventDefault()
@@ -83,25 +80,12 @@ const Location = () => {
             districtName,
             distance: find.distance_from_dhaka
         }
-        fetch('http://localhost:5000/location', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body : JSON.stringify(obj)    
-        })
-        .then(res => res.json())
-            .then(res => {
-                if (res.insertedId) {
-                    navigate('/step')
-                }
-        })
+        navigate('/step',{state:obj})
     }
  
     return (
         <form onSubmit={locationHandler} className='mx-auto mt-11 w-[50%]'>
-            <div className='w-[40%]'>
-                <h1 className='text-4xl mt-8 mb-1 text-sky-900 font-semibold'>Choose Location :</h1>
-                <hr />
-           </div>
+           
              
             <div className='mt-4 flex justify-between border border-sky-500 rounded-md'>
                 <p name='from' className='appearance-none w-full p-3 font-semibold text-gray-500'>
@@ -110,7 +94,7 @@ const Location = () => {
                 
                 <div className="divider lg:divider-horizontal"></div> 
 
-                <select name='destination' className='w-full mr-2'>
+                <select name='destination' className='w-full mr-2' required>
                     <option selected disabled>TO</option>
                     {
                         destrict.map(v => <option key={Math.random()}>{v.district}</option>)

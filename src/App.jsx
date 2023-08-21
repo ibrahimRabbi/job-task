@@ -4,6 +4,7 @@ import Home from "./home/Home"
 import Location from "./location/Location"
 import StepLayout from "./layout/StepLayout"
 import Details from "./parcelDetails/Details"
+import SenderInfo from "./sender/SenderInfo"
 
 function App() {
   const router = createBrowserRouter([
@@ -22,9 +23,13 @@ function App() {
         {
           path: '/step',
           element: <StepLayout />,
-          children: [
+          children: [  
             {
               path: '/step',
+              element:<SenderInfo/>
+            },
+            {
+              path: 'details',
               element:<Details/>
             }
           ]

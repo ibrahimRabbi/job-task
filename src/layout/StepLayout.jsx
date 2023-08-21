@@ -1,12 +1,15 @@
 import React from 'react';
 import Calculate from '../calculate/Calculate';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import './layout.css'
+
 const StepLayout = () => {
+    const { state } = useLocation()
+    
     return (
         <main className='layout'>
              <Outlet/>
-            <Calculate/>
+            <Calculate dataObj={state} />
          </main>
     );
 };

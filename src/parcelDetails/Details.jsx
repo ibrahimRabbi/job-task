@@ -1,12 +1,15 @@
 import React from 'react';
 import { BsArrowRight } from 'react-icons/bs'
+import { useLocation } from 'react-router-dom';
 
 
 const Details = () => {
 
     const parcelType = ['document', 'parcel', 'glass', 'wood', 'steel', 'other']
     const weight = ['100gm-500gm', '500gm-1kg', '1kg-2kg', '2kg-3kg', '3kg-4kg', '4kg-5kg', '5kg-6kg', '6kg-7kg', '7kg-8kg', '8kg-9kg', '9kg-10kg', '10kg-11kg', '11kg-12kg', '12kg-13kg', '13kg-14kg', '15kg-16kg', '16kg-17kg', '17kg-18kg', '18kg-19kg', '19kg-20kg', '20kg-21kg', '21kg-22kg', '22kg-23kg', '23kg-24kg', '24kg-25kg', '25kg-26kg', '26kg-27kg', '27kg-28kg', '28kg-29kg', '29kg-30kg', '30kg-31kg', '31kg-32kg', '32kg-33kg', '33kg-34kg', '34kg-35kg', '35kg-36kg', '36kg-37kg', '37kg-38kg', '38kg-39kg', '39kg-40kg',]
+    const {state} = useLocation()
     
+
     return (
         <div className='pl-16'>
             <div className='w-[30%]'>
