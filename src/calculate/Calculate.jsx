@@ -1,41 +1,48 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsArrowLeftRight } from "react-icons/bs";
+import useCalculateHooks from '../coustomHooks/CalculateHooks';
 
 const Calculate = ({ dataObj }) => {
-    console.log(dataObj)
-   // const [data, setData] = useState({})
-    const distance = dataObj.distance || 0
-    const weight = dataObj.weight || 1
-    let subTotal = 0;
-    
 
-    
+    const { data, refetch } = useCalculateHooks(dataObj.senderEmail)
+
+    const distance = data.distance || dataObj.distance
+    const weight = data?.weight || 0
+    let subTotal = 0;
+
     if (distance > 30) {
-        const vag = distance - 30 
+        const vag = distance - 30
         const remainingKmPrice = vag * 0.5
         subTotal = remainingKmPrice + 50
-   }
-   
-    if (distance <= 30) {
-       subTotal = 50
     }
-    
-     
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/location')
-    //         .then(res => res.json())
-    //         .then(res => setData(res))
-    // }, [])
-    
-    
-    
-    
+
+    if (distance <= 30) {
+        subTotal = 50
+    }
+
+    if (weight > 1) {
+        subTotal = subTotal + 20
+    }
+
+
     return (
         <div className='bg-sky-300 p-5'>
             <div className='flex justify-between items-center mt-2 text-gray-600 font-semibold w-[90%] text-xl mx-auto'>
                 <p>FROM: Dhaka</p>
                 <BsArrowLeftRight />
                 <p>TO: {dataObj.districtName}</p>
+            </div>
+            <div>
+                {
+                    data.item ? <p className='mt-4 text-gray-700 font-semibold'>{`Item Type: ${data.item}`}</p> : ''
+                }
+                {
+                    data.weight ? <p className='mt-1 text-gray-700 font-semibold'>{`weight: ${data.weight}kg`}</p> : ''
+                }
+
+                {
+                    data.quantity ? <p className='mt-1 text-gray-700 font-semibold'>{`Item quantity: ${data.quantity}`}</p> : ''
+                }
             </div>
             <div className='mt-11'>
                 <hr className='border-2 border-blue-600 ' />
