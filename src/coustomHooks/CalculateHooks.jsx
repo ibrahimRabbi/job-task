@@ -2,11 +2,13 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 
-const useCalculateHooks = (email) => {
+const useCalculateHooks = () => {
+    const id = localStorage.getItem('id')
+    
     const {data={},refetch } = useQuery({
-        queryKey: [email],
+        queryKey: [id],
         queryFn: async () => {
-            const fethching = await fetch(`http://localhost:5000/location/${email}`)
+            const fethching = await fetch(`http://localhost:5000/location/${id}`)
             const cont = await fethching.json()
             return cont
 

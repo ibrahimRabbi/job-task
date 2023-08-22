@@ -76,11 +76,24 @@ const Location = () => {
         e.preventDefault()
         const districtName = e.target.destination.value
         const find = destrict.find(v => v.district === districtName)
+        localStorage.setItem("id", Math.random());
         const obj = {
             districtName,
-            distance: find.distance_from_dhaka
+            distance: find.distance_from_dhaka,
+            id:localStorage.getItem('id')
         }
-        navigate('/step',{state:obj})
+        fetch('http://localhost:5000/location', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(obj)
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.insertedId) {
+                    navigate('/step')
+                }
+            })
+        
     }
  
     return (

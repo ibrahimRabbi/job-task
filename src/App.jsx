@@ -5,7 +5,7 @@ import Home from "./home/Home"
 import Location from "./location/Location"
 import StepLayout from "./layout/StepLayout"
 import Details from "./parcelDetails/Details"
-import SenderInfo from "./sender/SenderInfo"
+ 
 
 function App() {
   const queryClient = new QueryClient()
@@ -28,12 +28,8 @@ function App() {
           children: [  
             {
               path: '/step',
-              element:<SenderInfo/>
-            },
-            {
-              path: 'details',
-              element:<Details/>
-            }
+              element: <Details/>
+            }    
           ]
         }
       ]

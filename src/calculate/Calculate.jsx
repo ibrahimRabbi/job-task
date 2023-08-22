@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { BsArrowLeftRight } from "react-icons/bs";
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 
-const Calculate = ({ dataObj }) => {
+const Calculate = () => {
+ 
+    const { data, refetch } = useCalculateHooks()
 
-    const { data, refetch } = useCalculateHooks(dataObj.senderEmail)
-
-    const distance = data.distance || dataObj.distance
-    const weight = data?.weight || 0
+     const distance = data?.distance ||  0
+     const weight = data?.weight || 0
     let subTotal = 0;
 
     if (distance > 30) {
@@ -30,7 +30,7 @@ const Calculate = ({ dataObj }) => {
             <div className='flex justify-between items-center mt-2 text-gray-600 font-semibold w-[90%] text-xl mx-auto'>
                 <p>FROM: Dhaka</p>
                 <BsArrowLeftRight />
-                <p>TO: {dataObj.districtName}</p>
+                <p>TO: {data.districtName}</p>
             </div>
             <div>
                 {

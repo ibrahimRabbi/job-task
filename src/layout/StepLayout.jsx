@@ -4,12 +4,11 @@ import { Outlet, useLocation } from 'react-router-dom';
 import './layout.css'
 
 const StepLayout = () => {
-    const { state } = useLocation()
     
     return (
         <main className='layout'>
              <Outlet/>
-            <Calculate dataObj={state} />
+            <Calculate/>
          </main>
     );
 };
