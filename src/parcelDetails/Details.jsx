@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
+import HeadLine from '../utility/HeadLine';
+import Select from '../utility/Select';
  
 
 
@@ -64,6 +66,7 @@ const Details = () => {
                 }
             })
     }
+    
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -83,7 +86,7 @@ const Details = () => {
                         .then(res => res.json())
                         .then(res => {
                             if (res.modifiedCount > 0) {
-                                navigate('/')
+                                navigate('date')
                             }
                         })
                
@@ -95,29 +98,10 @@ const Details = () => {
 
     return (
         <div className='pl-16'>
-            <div className='w-[30%]'>
-                <h1 className='text-4xl mt-11 pb-2 font-semibold text-sky-900'>Item Details :</h1>
-                <hr />
-           </div>
+            <HeadLine title='Item Details 2'/>
             <form onSubmit={submitHandler} className='w-[60%] mt-4  space-y-4'>
-                <div className="form-control w-full">
-                    <label className="label"><span className="label-text">what do you want to send*</span></label>
-                    <select value={item} onChange={itemHandler} className="border border-sky-600 rounded-2xl p-2">
-                        {
-                        parcelType.map(v => <option selected={v=== 'parcel'? true:false} key={Math.random()}>{v}</option>)
-                        }
-                    </select>
-                </div>
-
-                <div className="form-control w-full">
-                    <label className="label"><span className="label-text">Item Weight*</span></label>
-                    <select value={weigh} onChange={weightHandler} className="border border-sky-600 rounded-2xl p-2" placeholder='name'>
-                        {
-                            weight.map(v => <option key={Math.random()}>{v}</option>)
-                         }
-                    </select>
-                </div>
-
+                <Select value={item} handler={itemHandler} arry={parcelType} />
+                <Select value={weigh} handler={weightHandler} arry={weight} />
                 <div className='flex gap-3'>
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">number of items*</span></label>

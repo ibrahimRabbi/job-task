@@ -6,7 +6,7 @@ import './layout.css'
 const StepLayout = () => {
     
     return (
-        <main className='layout'>
+        <main className='layout relative'>
              <Outlet/>
             <Calculate/>
          </main>

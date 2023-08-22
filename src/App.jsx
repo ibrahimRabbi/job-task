@@ -5,6 +5,7 @@ import Home from "./home/Home"
 import Location from "./location/Location"
 import StepLayout from "./layout/StepLayout"
 import Details from "./parcelDetails/Details"
+import DatePlace from "./DatePlace/DatePlace"
  
 
 function App() {
@@ -29,7 +30,11 @@ function App() {
             {
               path: '/step',
               element: <Details/>
-            }    
+            },
+            {
+              path: 'date',
+              element:<DatePlace/>
+            }
           ]
         }
       ]
