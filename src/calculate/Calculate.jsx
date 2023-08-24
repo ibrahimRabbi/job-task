@@ -4,32 +4,8 @@ import useCalculateHooks from '../coustomHooks/CalculateHooks';
 
 const Calculate = () => {
  
-    const { data, refetch } = useCalculateHooks()
-    const today = new Date()
-    const datee = today.toUTCString().slice(0, 10)  
-    let subTotal = 0;
-
-    if (data?.distance > 30) {
-        const vag = data.distance - 30
-        const remainingKmPrice = vag * 0.5
-        subTotal = remainingKmPrice + 50
-    }
-
-    if (data?.distance <= 30) {
-        subTotal = 50
-    }
-
-    if (data?.weight > 1) {
-        subTotal = subTotal + 20
-    }
-
-    if (data?.date) {
-         subTotal = subTotal + data.date.price
-    }
-    
-    if (data.floor) {
-        subTotal = subTotal + data.floor.price
-    }
+    const { data, subTotal } = useCalculateHooks()
+     
 
 
     return (

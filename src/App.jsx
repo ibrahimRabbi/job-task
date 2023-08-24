@@ -8,6 +8,7 @@ import Details from "./parcelDetails/Details"
 import PickupDate from "./pickupDate/DatePlace"
 import ItemPlace from "./ItemPlace/ItemPlace"
 import Review from "./Review/Review"
+import Payment from "./Payment/Payment"
 
  
 
@@ -47,6 +48,10 @@ function App() {
         {
           path: 'review',
           element: <Review/> ,
+        },
+        {
+          path: 'payment',
+          element:<Payment/>
         }
       ]
 
