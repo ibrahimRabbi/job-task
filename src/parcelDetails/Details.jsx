@@ -15,7 +15,7 @@ const Details = () => {
    
     const [item, setItem] = useState('')
     const [weigh, setWeight] = useState(1)
-    const [quantity,setQunty] = useState(1)
+    const [quantity,setQunty] = useState('')
     const { refetch,data } = useCalculateHooks()
     const navigate = useNavigate()
    
@@ -53,11 +53,7 @@ const Details = () => {
     }
 
     const quantityHandler = (e) => {
-        const qunty = e.target.value
-        setQunty(e.target.value)
-        if (qunty < 1 || qunty == '') {
-            setQunty(1)
-        }
+        setQunty(e.target.value)    
         fatchingHandler({ quantity: e.target.value })
             .then(res => res.json())
             .then(res => {

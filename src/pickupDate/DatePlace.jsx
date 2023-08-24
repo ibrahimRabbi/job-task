@@ -4,8 +4,9 @@ import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 
-const DatePlace = () => {
+const PickupDate = () => {
     const { data, refetch } = useCalculateHooks()
+    
     const ref = useRef(null)
     const next10Days = [];
     const today = new Date() 
@@ -70,17 +71,19 @@ const DatePlace = () => {
     }
 
       
-    const radioHandler = (data) => {
-        fatchingHandler({ date:data })
+    const clickHandler = (data) => {
+        fatchingHandler({ date: data })
             .then(res => res.json())
             .then(res => {
                 if (res.modifiedCount > 0) {
                     refetch()
                 }
             })
-    }
+}
     
     
+   
+   
     return (
         <section className='mt-2  mb-11 ml-9'>
             <HeadLine title='when we pickup and delivery 3'/>
@@ -88,9 +91,9 @@ const DatePlace = () => {
                 {
                     arry.map(v => {
                         return (
-                            <div key={Math.random()} className={`flex justify-between items-center border rounded-lg hover:bg-sky-300 duration-75 p-3 mt-3 font-semibold`}>
+                            <div onClick={()=>clickHandler(v)} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer ${data?.date?.date === v.date ? 'bg-sky-300':'bg-white'} hover:bg-slate-200 duration-75 p-3 mt-3 font-semibold`}>
                                 <div className='flex gap-2 items-center'>
-                                    <input ref={ref} type="radio" name="radio-1" className='radio' onChange={() => radioHandler(v)} checked={data?.date?.date === v.date? true :''}/>
+                                    
                                     <p>{v.dayDate} {v.date}</p>
                                 </div>
                                 <p>{v.price}-Tk</p>
@@ -101,10 +104,10 @@ const DatePlace = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <Link className='bg-sky-500 btn hover:bg-sky-600 w-[35%]'>Continue <BsArrowRight /></Link>
+                <Link to='/step/place' className='bg-sky-500 btn hover:bg-sky-600 w-[45%]'>Continue <BsArrowRight/></Link>
             </div>
         </section>
     );
 };
 
-export default DatePlace;
+export default PickupDate;

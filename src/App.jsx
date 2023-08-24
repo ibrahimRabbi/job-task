@@ -5,7 +5,10 @@ import Home from "./home/Home"
 import Location from "./location/Location"
 import StepLayout from "./layout/StepLayout"
 import Details from "./parcelDetails/Details"
-import DatePlace from "./DatePlace/DatePlace"
+import PickupDate from "./pickupDate/DatePlace"
+import ItemPlace from "./ItemPlace/ItemPlace"
+import Review from "./Review/Review"
+
  
 
 function App() {
@@ -33,11 +36,20 @@ function App() {
             },
             {
               path: 'date',
-              element:<DatePlace/>
+              element: <PickupDate/>
+            },
+            {
+              path: 'place',
+              element:<ItemPlace/>
             }
           ]
+        },
+        {
+          path: 'review',
+          element: <Review/> ,
         }
       ]
+
      }
   ])
   
