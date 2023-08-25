@@ -35,7 +35,7 @@ const Review = () => {
                     </div>
                 </div>
                 <div className='divider w-[80%] mx-auto'></div>
-                <h1 className='text-4xl text-red-600 font-semibold text-center pb-3 mt-7'>Sub Total - {subTotal}</h1>
+                <h1 className='text-4xl text-red-600 font-semibold text-center pb-3 mt-7'>Sub Total - {subTotal}TK</h1>
             </div>
             
             <div className=' mt-7 w-[70%]'>
