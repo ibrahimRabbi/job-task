@@ -9,6 +9,10 @@ import PickupDate from "./pickupDate/DatePlace"
 import ItemPlace from "./ItemPlace/ItemPlace"
 import Review from "./Review/Review"
 import Payment from "./Payment/Payment"
+import SignUp from "./form/Signup"
+import AuthContext from "./Authentication/AuthContext"
+import PrivetRoute from "./privetRoute/PrivetRoute"
+import Signin from "./form/Signin"
 
  
 
@@ -51,18 +55,28 @@ function App() {
         },
         {
           path: 'payment',
-          element:<Payment/>
+          element: <PrivetRoute><Payment/></PrivetRoute>
         }
       ]
 
-     }
+    },
+    {
+      path: '/signup',
+      element: <SignUp/>
+    },
+    {
+      path: '/signin',
+      element:<Signin/>
+    }
   ])
   
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-   </QueryClientProvider>
+    <AuthContext>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </AuthContext>
   )
 }
 
