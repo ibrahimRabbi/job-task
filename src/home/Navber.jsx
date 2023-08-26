@@ -15,7 +15,7 @@ const Navber = () => {
             <div className='w-[90%] mx-auto flex justify-between'>
 
                 <div className="">
-                    <Link to='/' className=" font-semibold text-2xl text-slate-800">My Curier</Link>
+                    <Link to='/' className=" font-semibold text-2xl text-slate-800">My Courier</Link>
                 </div>
 
                 <ul className='flex gap-6 text-lg text-slate-700 font-semibold'>
