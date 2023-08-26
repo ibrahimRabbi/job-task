@@ -4,6 +4,7 @@ import './payment.css'
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../Authentication/AuthContext';
+import Swal from 'sweetalert2';
  
 
 
@@ -60,7 +61,7 @@ const CheckoutForm = () => {
         }
 
 
-        if (paymentIntent.status == 'succeeded') {
+        if (paymentIntent?.status == 'succeeded') {
             const summery = {
                 transictionId: paymentIntent.id,
                 amount: subTotal,
@@ -76,7 +77,8 @@ const CheckoutForm = () => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    if (res.deletedCount > 0 && res.insertedId) {
+                    
+                    if (res.result.insertedId) {
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -106,7 +108,7 @@ const CheckoutForm = () => {
     }, [subTotal]);
 
     return (
-        <section className='mx-auto'>
+        <section className='mx-auto h-[80vh]'>
             
             <form className='w-1/2 mt-20 mx-auto' onSubmit={handleSubmit}>
                 <h1 className='text-lg font-semibold text-red-600'>pay: {subTotal}Tk</h1>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import HeadLine from '../utility/HeadLine';
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 import { Roller } from 'react-spinners-css';
 
@@ -9,6 +9,8 @@ const ItemPlace = () => {
 
     const { data, refetch } = useCalculateHooks()
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+
     const heightDetails = [
         {
             floor: 'ground Floor',
@@ -64,6 +66,10 @@ const ItemPlace = () => {
         return <Roller className='mx-auto block mt-48' />
     }
 
+    const btnHandler = () => {
+        navigate('/review')
+    }
+
     return (
         <section className='mt-2  mb-11 ml-9'>
             <HeadLine title='where are the item' />
@@ -82,7 +88,7 @@ const ItemPlace = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <Link to='/review' className='bg-amber-500 btn hover:bg-amber-500 w-[45%]'>Review <BsArrowRight /></Link>
+                <button onClick={btnHandler} disabled={data?.floor?false:true} className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Review <BsArrowRight /></button>
             </div>
         </section>
     );

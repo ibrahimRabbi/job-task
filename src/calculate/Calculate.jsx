@@ -9,7 +9,7 @@ const Calculate = () => {
 
 
     return (
-        <div className='bg-gradient-to-tl from-amber-500  to-amber-300  p-5 mt-12 rounded-lg h-[70vh] sticky top-5'>
+        <div className='bg-gradient-to-tl from-amber-500  to-amber-300  p-5 rounded-lg h-[60vh] sticky top-5'>
             <div className='flex justify-between items-center mt-2 text-sky-800 font-semibold w-[90%] text-xl mx-auto'>
                 <p>FROM: Dhaka</p>
                 <BsArrowLeftRight />

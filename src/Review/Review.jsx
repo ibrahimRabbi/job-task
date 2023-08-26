@@ -6,7 +6,7 @@ const Review = () => {
     const { data, subTotal } = useCalculateHooks()
 
     return (
-        <section className='w-[60%] mx-auto mt-11'>
+        <section className='w-[60%] mx-auto h-[70vh] mt-16'>
             <div className='border p-4'>
                 <div className='flex gap-7 '>
                     <div className="avatar">

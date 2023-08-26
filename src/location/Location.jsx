@@ -14,27 +14,33 @@ const Location = () => {
     const navigate = useNavigate()
     const { data } = useCalculateHooks()
     const [loading, setLoading] = useState(true)
-
+const [error,setError] = useState('')
     const locationHandler = (e) => {
         e.preventDefault()
+        
         const districtName = e.target.destination.value
-        const find = distric.find(v => v.district === districtName)
-        const obj = {
-            districtName,
-            distance: find.distance_from_dhaka,
-        }
-        fetch('http://localhost:5000/location', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(obj)
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.insertedId) {
-                    localStorage.setItem('id', res.insertedId)
-                    navigate('/step')
-                }
+        if (districtName === 'Selecet District') {
+            setError('please selecet your District')
+        } else {
+            setError('')
+            const find = distric.find(v => v.district === districtName)
+            const obj = {
+                districtName,
+                distance: find.distance_from_dhaka,
+            }
+            fetch('http://localhost:5000/location', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(obj)
             })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.insertedId) {
+                        localStorage.setItem('id', res.insertedId)
+                        navigate('/step')
+                    }
+                })
+        }
 
     }
 
@@ -62,17 +68,16 @@ const Location = () => {
                                     From : Dhaka
                                 </p>
                             </div>
-
-
-                            <select name='destination' className='w-full mr-2 bg-none border-l-2 border-slate-700 outline-none p-3' required>
+ 
+                            <select name='destination' className='w-full mr-2 bg-none outline-none p-3' required>
                                 <option selected disabled >Selecet District</option>
                                 {
                                     distric.map(v => <option key={v._id}>{v.district}</option>)
                                 }
                             </select>
-
                         </div>
-                        <button type='submit' className='mx-auto w-[35%] flex bg-amber-500 text-slate-50 hover:bg-amber-500 btn border-none mt-8'>Calculate  price <BsArrowRight /></button>
+                        <p className='text-amber-300 font-semibold text-lg'>{error}</p>
+                        <button type='submit' className='mx-auto w-[35%] flex bg-amber-500 text-slate-700 hover:bg-amber-500 btn border-none mt-8'>Calculate  price <BsArrowRight /></button>
                     </form>
                 </div>
             }

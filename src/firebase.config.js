@@ -1,13 +1,13 @@
- import { initializeApp } from "firebase/app";
- 
+import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
-    apiKey: "AIzaSyA0RJ_oSUKj7pkgXpJUGDYzz1aYxfP59GI",
-    authDomain: "snap-sale-8a64c.firebaseapp.com",
-    projectId: "snap-sale-8a64c",
-    storageBucket: "snap-sale-8a64c.appspot.com",
-    messagingSenderId: "208813032706",
-    appId: "1:208813032706:web:3acac526c060d847be2e1b"
+    apiKey: import.meta.env.VITE_apiKey,
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,
+    appId: import.meta.env.VITE_appId
 };
 
- 
+
 export const app = initializeApp(firebaseConfig);

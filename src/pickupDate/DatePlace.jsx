@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HeadLine from '../utility/HeadLine';
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 import { Roller } from 'react-spinners-css';
 
 const PickupDate = () => {
     const { data, refetch } = useCalculateHooks()
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     const ref = useRef(null)
     const next10Days = [];
     const today = new Date()
@@ -89,6 +90,10 @@ const PickupDate = () => {
         return <Roller className='mx-auto block mt-48' />
     }
 
+    const btnHandler = () => {
+        navigate('/step/place')
+    }
+ 
     return (
         <section className='mt-2  mb-11 ml-9'>
             <HeadLine title='when we pickup and delivery 3' />
@@ -109,7 +114,7 @@ const PickupDate = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <Link to='/step/place' className='bg-amber-500 btn hover:bg-amber-500 w-[45%]'>Continue <BsArrowRight /></Link>
+                <button disabled={data?.date?false:true} onClick={btnHandler}  className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Continue <BsArrowRight /></button>
             </div>
         </section>
     );

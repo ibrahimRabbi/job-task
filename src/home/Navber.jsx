@@ -42,7 +42,7 @@ const Navber = () => {
                                     <li><Link to='dashboard' className='bg-amber-500 text-gray-700'>DashBoard</Link></li>
                                     <li><button onClick={() => signout()} className='bg-amber-500 text-gray-700'>Logout</button></li>
                                 </ul>
-                            </> : <Link to='/signin' className='bg-amber-500 p-2 rounded-lg   font-semibold text-slate-700'>Sign In</Link>
+                            </> : <Link to='/signin' className='bg-amber-500 p-2 flex items-center gap-1 text-lg rounded-lg font-semibold text-slate-700'><FiUser /> Sign In</Link>
                         }
 
                     </div>
