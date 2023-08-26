@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const About = () => {
     return (
-        <section className='w-[90%] my-16 mx-auto'>
+        <section id='about' className='w-[90%] my-16 mx-auto'>
             <h1 className='text-4xl font-semibold text-sky-900'>--About Us</h1>
             <div className='grid grid-cols-2 mt-9 items-center gap-4'>
                 <div className='w-[80%]'>

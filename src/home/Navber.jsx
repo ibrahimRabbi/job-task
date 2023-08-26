@@ -21,7 +21,7 @@ const Navber = () => {
                 <ul className='flex gap-6 text-lg text-slate-700 font-semibold'>
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/location'>Get Started</Link></li>
-                    <li><Link>About Us</Link></li>
+                    <li><a href='#about'>About Us</a></li>
                     <li><Link>Coverage Map</Link></li>
                 </ul>
 
