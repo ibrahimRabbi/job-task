@@ -13,6 +13,7 @@ import SignUp from "./form/Signup"
 import AuthContext from "./Authentication/AuthContext"
 import PrivetRoute from "./privetRoute/PrivetRoute"
 import Signin from "./form/Signin"
+import Dashboard from "./Dashboard/Dashboard"
 
  
 
@@ -56,6 +57,10 @@ function App() {
         {
           path: 'payment',
           element: <PrivetRoute><Payment/></PrivetRoute>
+        },
+        {
+          path: 'dashboard',
+          element:<Dashboard/>
         }
       ]
 

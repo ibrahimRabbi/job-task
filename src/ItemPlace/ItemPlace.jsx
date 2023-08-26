@@ -71,7 +71,7 @@ const ItemPlace = () => {
                 {
                     heightDetails.map(v => {
                         return (
-                            <div onClick={() => { clickHandler(v)}} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer hover:bg-slate-200 duration-75 ${data?.floor?.floor === v.floor? 'bg-sky-300':'bg-white'} p-3 mt-3 font-semibold`}>
+                            <div onClick={() => { clickHandler(v) }} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer hover:bg-slate-200 duration-75 ${data?.floor?.floor === v.floor ? 'bg-amber-400' : 'bg-white'} p-3 mt-3 font-semibold`}>
                                 <div className='flex gap-2 items-center'>
                                     <p>{v.floor}</p>
                                 </div>
@@ -82,9 +82,9 @@ const ItemPlace = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <Link to='/review' className='bg-sky-500 btn hover:bg-sky-600 w-[45%]'>Review <BsArrowRight/></Link>
+                <Link to='/review' className='bg-amber-500 btn hover:bg-amber-500 w-[45%]'>Review <BsArrowRight /></Link>
             </div>
-         </section>
+        </section>
     );
 };
 

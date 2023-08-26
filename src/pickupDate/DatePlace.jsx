@@ -7,10 +7,10 @@ import { Roller } from 'react-spinners-css';
 
 const PickupDate = () => {
     const { data, refetch } = useCalculateHooks()
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const ref = useRef(null)
     const next10Days = [];
-    const today = new Date() 
+    const today = new Date()
 
     for (let i = 0; i <= 10; i++) {
         const nextDay = new Date(today)
@@ -22,7 +22,7 @@ const PickupDate = () => {
         {
             dayDate: 'today',
             price: 25,
-            date:next10Days[0]
+            date: next10Days[0]
         },
         {
             dayDate: 'tommorw',
@@ -59,7 +59,7 @@ const PickupDate = () => {
             price: 0,
             date: next10Days[7]
         },
-         
+
     ]
 
     const fatchingHandler = (obj) => {
@@ -71,7 +71,7 @@ const PickupDate = () => {
 
     }
 
-      
+
     const clickHandler = (data) => {
         setLoading(true)
         fatchingHandler({ date: data })
@@ -82,34 +82,34 @@ const PickupDate = () => {
                     setLoading(false)
                 }
             })
-}
-    
-    
+    }
+
+
     if (loading) {
-       return <Roller className='mx-auto block mt-48'/>
-   }
-   
+        return <Roller className='mx-auto block mt-48' />
+    }
+
     return (
         <section className='mt-2  mb-11 ml-9'>
-            <HeadLine title='when we pickup and delivery 3'/>
-            <div className='mt-8 w-[70%]'>        
+            <HeadLine title='when we pickup and delivery 3' />
+            <div className='mt-8 w-[70%]'>
                 {
                     arry.map(v => {
                         return (
-                            <div onClick={()=>clickHandler(v)} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer ${data?.date?.date === v.date ? 'bg-sky-300':'bg-white'} hover:bg-slate-200 duration-75 p-3 mt-3 font-semibold`}>
+                            <div onClick={() => clickHandler(v)} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer ${data?.date?.date === v.date ? 'bg-amber-400' : 'bg-white'} hover:bg-slate-200 duration-75 p-3 mt-3 font-semibold`}>
                                 <div className='flex gap-2 items-center'>
-                                    
+
                                     <p>{v.dayDate} {v.date}</p>
                                 </div>
                                 <p>{v.price}-Tk</p>
-                                
+
                             </div>
                         )
                     })
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <Link to='/step/place' className='bg-sky-500 btn hover:bg-sky-600 w-[45%]'>Continue <BsArrowRight/></Link>
+                <Link to='/step/place' className='bg-amber-500 btn hover:bg-amber-500 w-[45%]'>Continue <BsArrowRight /></Link>
             </div>
         </section>
     );

@@ -4,17 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { Roller } from 'react-spinners-css';
 import { ImLocation2 } from 'react-icons/im'
- import './image.css'
+import './image.css'
 
 
 
 const Location = () => {
- 
-    const [distric,setDistric] = useState([])
+
+    const [distric, setDistric] = useState([])
     const navigate = useNavigate()
-    const {data} = useCalculateHooks()
+    const { data } = useCalculateHooks()
     const [loading, setLoading] = useState(true)
-    
+
     const locationHandler = (e) => {
         e.preventDefault()
         const districtName = e.target.destination.value
@@ -31,11 +31,11 @@ const Location = () => {
             .then(res => res.json())
             .then(res => {
                 if (res.insertedId) {
-                    localStorage.setItem('id',res.insertedId)
+                    localStorage.setItem('id', res.insertedId)
                     navigate('/step')
                 }
             })
-        
+
     }
 
     useEffect(() => {
@@ -44,10 +44,10 @@ const Location = () => {
             .then(res => {
                 setDistric(res)
                 setLoading(false)
-        })
-    },[])
- 
-    
+            })
+    }, [])
+
+
     return (
         <section>
             {
@@ -72,7 +72,7 @@ const Location = () => {
                             </select>
 
                         </div>
-                        <button type='submit' className='mx-auto w-[35%] flex bg-sky-500 text-slate-50 hover:bg-sky-600 btn border-none mt-8'>Calculate  price <BsArrowRight /></button>
+                        <button type='submit' className='mx-auto w-[35%] flex bg-amber-500 text-slate-50 hover:bg-amber-500 btn border-none mt-8'>Calculate  price <BsArrowRight /></button>
                     </form>
                 </div>
             }

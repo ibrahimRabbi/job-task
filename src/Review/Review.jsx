@@ -3,8 +3,8 @@ import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { Link } from 'react-router-dom';
 
 const Review = () => {
-    const { data,subTotal } = useCalculateHooks()
-   
+    const { data, subTotal } = useCalculateHooks()
+
     return (
         <section className='w-[60%] mx-auto mt-11'>
             <div className='border p-4'>
@@ -37,11 +37,11 @@ const Review = () => {
                 <div className='divider w-[80%] mx-auto'></div>
                 <h1 className='text-4xl text-red-600 font-semibold text-center pb-3 mt-7'>Sub Total - {subTotal}TK</h1>
             </div>
-            
+
             <div className=' mt-7 w-[70%]'>
-                <Link to='/payment' className='bg-sky-500 btn hover:bg-sky-600 w-[45%]'>Procced to checkout</Link>
+                <Link to='/payment' className='bg-amber-500 btn hover:bg-amber-500 w-[45%]'>Procced to checkout</Link>
             </div>
-         </section>
+        </section>
     );
 };
 

@@ -9,18 +9,23 @@ import { Context } from '../Authentication/AuthContext';
 const Navber = () => {
 
     const { user, signout } = useContext(Context)
- 
-    return (   
-        <div className="navbar navbarr">
+
+    return (
+        <div className="navbar bg-amber-500 navbarr">
             <div className='w-[90%] mx-auto flex justify-between'>
 
                 <div className="">
-                    <Link to='/' className=" font-semibold text-2xl text-sky-700">My Curier</Link>
+                    <Link to='/' className=" font-semibold text-2xl text-slate-800">My Curier</Link>
                 </div>
 
+                <ul className='flex gap-6 text-lg text-slate-700 font-semibold'>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/location'>Get Started</Link></li>
+                    <li><Link>About Us</Link></li>
+                    <li><Link>Coverage Map</Link></li>
+                </ul>
 
-
-                <div className=" flex items-center gap-4 text-sky-700">
+                <div className=" flex items-center gap-4 text-slate-700">
                     <Link className='text-lg font-semibold flex items-center gap-1'><BsTelephone /> +880196711517</Link>
 
                     <div className="dropdown dropdown-end">
@@ -34,12 +39,12 @@ const Navber = () => {
                                     </label>
                                 </div>
                                 <ul tabIndex={0} className="mt-3 z-[1] p-2 space-y-2 shadow-xl menu menu-sm dropdown-content bg-slate-100 rounded-box w-52">
-                                    <li><Link className='bg-sky-500 text-gray-700'>DashBoard</Link></li>
-                                    <li><button onClick={()=>signout()} className='bg-sky-500 text-gray-700'>Logout</button></li>
+                                    <li><Link to='dashboard' className='bg-amber-500 text-gray-700'>DashBoard</Link></li>
+                                    <li><button onClick={() => signout()} className='bg-amber-500 text-gray-700'>Logout</button></li>
                                 </ul>
-                            </> : <Link to='/signin' className='bg-sky-500 p-2 rounded-lg   font-semibold text-slate-700'>Sign In</Link>
-                       }
-                       
+                            </> : <Link to='/signin' className='bg-amber-500 p-2 rounded-lg   font-semibold text-slate-700'>Sign In</Link>
+                        }
+
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import { BsArrowRight } from 'react-icons/bs';
 const SenderInfo = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
-   
+
 
 
     const senderInfoHandler = (e) => {
@@ -39,21 +39,21 @@ const SenderInfo = () => {
             <form onSubmit={senderInfoHandler} className='w-[50%] mx-auto mt-5 space-y-2'>
                 <div className="form-control w-full">
                     <label className="label"><span className="label-text">Sender Full Name*</span></label>
-                    <input type='text' name='name' className="border border-sky-600 rounded-2xl p-2" placeholder='place your name' required />
+                    <input type='text' name='name' className="border border-amber-600 rounded-2xl p-2" placeholder='place your name' required />
                 </div>
 
                 <div className="form-control w-full">
                     <label className="label"><span className="label-text">sender Phone number*</span></label>
-                    <input type='number' name='number' className="border border-sky-600 rounded-2xl p-2" placeholder='enter your active number' required />
+                    <input type='number' name='number' className="border border-amber-600 rounded-2xl p-2" placeholder='enter your active number' required />
                 </div>
 
                 <div className="form-control w-full">
                     <label className="label"><span className="label-text">sender email*</span></label>
-                    <input type='email' name='email' className="border border-sky-600 rounded-2xl p-2" placeholder='enter your valid email' required />
+                    <input type='email' name='email' className="border border-amber-600 rounded-2xl p-2" placeholder='enter your valid email' required />
                 </div>
 
                 <div className='pt-6'>
-                    <button className='bg-sky-500 btn hover:bg-sky-600 w-full' type="submit">Continue <BsArrowRight /> </button>
+                    <button className='bg-amber-500 btn hover:bg-amber-500 w-full' type="submit">Continue <BsArrowRight /> </button>
                 </div>
             </form>
         </section>
