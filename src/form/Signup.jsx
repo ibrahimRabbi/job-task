@@ -16,11 +16,11 @@ const SignUp = () => {
     const { handleSubmit, register, formState: { errors } } = useForm()
     const navigate = useNavigate()
     const [error, setError] = useState('')
-   
+   const [load,setLoad] = useState(false)
 
 
     const submit = (data) => {
-      
+    
         const { name, email, number, image, password, confirm } = data
         const formData = new FormData()
         formData.append('image', image[0])
@@ -29,6 +29,8 @@ const SignUp = () => {
         if (password !== confirm) {
             setError('confirm password doesnt match')
         } else {
+            setError('')
+            setLoad(true)
             const userObj = { email, password, name,number }
             fetch(`https://api.imgbb.com/1/upload?key=980c5aa9b32d7a954c2c27ea3bb7f131`, {
                 method: 'POST',
@@ -40,8 +42,8 @@ const SignUp = () => {
                         const img = res.data.url
                         signup(email, password)
                             .then(res => {
+                                setLoad(true)
                                 profile(res.user, name, img,number )
-                                setError('')
                                 fetch('http://localhost:5000/user', {
                                     method: "POST",
                                     headers: { 'content-type': 'application/json' },
@@ -49,7 +51,8 @@ const SignUp = () => {
                                 })
                                     .then(res => res.json())
                                     .then(res => {
-                                        if (res.insertedId) {
+                                      setLoad(false)
+                                        if (res.insertedId) {   
                                             Swal.fire({
                                                 position: 'center',
                                                 icon: 'success',
@@ -63,6 +66,7 @@ const SignUp = () => {
 
                             })
                             .catch(error => {
+                                setLoad(false)
                                 if (error.message == "Firebase: Error (auth/email-already-in-use).") {
                                     setError('this email already have an account')
                                 }
@@ -73,12 +77,16 @@ const SignUp = () => {
         }     
     }
 
+    if (load) {
+        return <Roller className="mt-48 block mx-auto" />
+    }
+
 
     return (
         <section>
             
-            {
-                loading ? <Roller className="mt-48 block mx-auto"/> : <div className="my-10 mx-auto w-1/2">
+          
+              <div className="my-10 mx-auto w-1/2">
                     <div className="w-[70%] mx-auto text-sky-600">
                         <h1 className="text-4xl font-semibold text-center">Create a new account</h1>
                         <hr className="mt-3" />
@@ -156,7 +164,7 @@ const SignUp = () => {
                         <SigninProvider redirect='/' />
                     </div>
                 </div>
-               }
+         
             
         </section>
     );

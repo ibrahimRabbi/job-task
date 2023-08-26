@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeadLine from '../utility/HeadLine';
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
+import { Roller } from 'react-spinners-css';
 
 const ItemPlace = () => {
 
-    const {data,refetch} = useCalculateHooks()
+    const { data, refetch } = useCalculateHooks()
+    const [loading, setLoading] = useState(false)
     const heightDetails = [
         {
             floor: 'ground Floor',
@@ -47,14 +49,21 @@ const ItemPlace = () => {
 
 
     const clickHandler = (data) => {
+        setLoading(true)
         fatchingHandler({ floor: data })
             .then(res => res.json())
             .then(res => {
                 if (res.modifiedCount > 0) {
                     refetch()
+                    setLoading(false)
                 }
             })
     }
+
+    if (loading) {
+        return <Roller className='mx-auto block mt-48' />
+    }
+
     return (
         <section className='mt-2  mb-11 ml-9'>
             <HeadLine title='where are the item' />

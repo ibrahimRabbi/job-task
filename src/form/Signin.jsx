@@ -9,24 +9,27 @@ import { Roller } from 'react-spinners-css';
 const Signin = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm()
-    const { signin, loading } = useContext(Context)
+    const { signin } = useContext(Context)
     const location = useLocation()
     const redirectTo = location.state?.redi || '/'
     const navigate = useNavigate()
     const [error, setError] = useState('')
-
+const [loading,setloading] = useState(false)
  
 
 
     const loginHandler = (data) => {
+      
         const { email, password, confirm } = data
 
         if (password !== confirm) {
             setError('confirm Password doesnt Match')
         } else {
+            setError('')
+            setloading(true) 
             signin(email, password)
                 .then(() => {
-                    setError('')
+                        
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -37,6 +40,7 @@ const Signin = () => {
                     navigate(redirectTo)
                 })
                 .catch(error => {
+                    setloading(false)
                     if (error.message == "Firebase: Error (auth/user-not-found).") {
                         setError('user is not exist in this application plz provied a valid password and email')
                     } else if (error.message == 'Firebase: Error (auth/wrong-password).') {
@@ -47,10 +51,13 @@ const Signin = () => {
 
     }
 
+    if (loading) {
+        return <Roller className="mt-48 block mx-auto" />
+    }
+
     return (
         <section>
-            {
-                loading ? <Roller className='block mt-48 mx-auto' /> : <div className="mt-10 w-1/2 mx-auto ">
+             <div className="mt-10 w-1/2 mx-auto ">
                     <div className="w-[70%] mx-auto text-sky-600">
                         <h1 className="text-4xl font-semibold text-center">Sign In</h1>
                         <hr className="mt-3" />
@@ -89,7 +96,7 @@ const Signin = () => {
                         <SigninProvider redirect={redirectTo} />
                     </div>
                 </div>
-            }
+            
         </section>
     );
 };

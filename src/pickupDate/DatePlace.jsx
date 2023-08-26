@@ -3,10 +3,11 @@ import HeadLine from '../utility/HeadLine';
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
+import { Roller } from 'react-spinners-css';
 
 const PickupDate = () => {
     const { data, refetch } = useCalculateHooks()
-    
+    const [loading,setLoading] = useState(false)
     const ref = useRef(null)
     const next10Days = [];
     const today = new Date() 
@@ -72,17 +73,21 @@ const PickupDate = () => {
 
       
     const clickHandler = (data) => {
+        setLoading(true)
         fatchingHandler({ date: data })
             .then(res => res.json())
             .then(res => {
                 if (res.modifiedCount > 0) {
                     refetch()
+                    setLoading(false)
                 }
             })
 }
     
     
-   
+    if (loading) {
+       return <Roller className='mx-auto block mt-48'/>
+   }
    
     return (
         <section className='mt-2  mb-11 ml-9'>

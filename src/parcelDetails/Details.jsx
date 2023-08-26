@@ -4,7 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import HeadLine from '../utility/HeadLine';
 import Select from '../utility/Select';
- 
+ import {useForm} from 'react-hook-form'
+import { Roller } from 'react-spinners-css';
 
 
 const Details = () => {
@@ -18,6 +19,10 @@ const Details = () => {
     const [quantity,setQunty] = useState('')
     const { refetch,data } = useCalculateHooks()
     const navigate = useNavigate()
+    const {register, handleSubmit,formState:{errors}} = useForm()
+    const [error, setError] = useState('')
+    const [loading,setLoading] = useState(false)
+
    
     const fatchingHandler = (obj) => {
       return  fetch(`http://localhost:5000/location/${data._id}`, {
@@ -53,24 +58,34 @@ const Details = () => {
     }
 
     const quantityHandler = (e) => {
-        setQunty(e.target.value)    
-        fatchingHandler({ quantity: e.target.value })
-            .then(res => res.json())
-            .then(res => {
-                if (res.modifiedCount > 0) {
-                    refetch()
-                }
-            })
+        setQunty(e.target.value) 
+        const data = parseInt(e.target.value)
+        if (data === 0) {
+            setError('please add a number of item minimum 1')
+        } else if (data >= 6) {
+            setError('we are allow only 5 pakage number of item per person')
+        } else if (e.target.value === '') {
+            setError('number of item is required')
+        } else {
+            setError('')
+            fatchingHandler({ quantity: e.target.value })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.modifiedCount > 0) {
+                        refetch()
+                    }
+                })
+        }
+       
     }
     
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-        const imageData = e.target.image.files[0]
+    const submitHandler = (data) => {  
+        setLoading(true)
+         const { image } = data
          const formData = new FormData()
-         formData.append('image', imageData)   
-    
-         
+         formData.append('image', image[0])   
+          
         fetch(`https://api.imgbb.com/1/upload?key=980c5aa9b32d7a954c2c27ea3bb7f131`, {
             method: 'POST',
             body: formData
@@ -82,37 +97,42 @@ const Details = () => {
                         .then(res => res.json())
                         .then(res => {
                             if (res.modifiedCount > 0) {
+                                setLoading(false)
                                 navigate('date')
                             }
                         })
                
            })
-        
-        
-   }                
+               
+    }   
+   
+    if (loading) {
+        return <Roller className='mx-auto mt-48 block'/>
+    }
      
 
     return (
         <div className='pl-36'>
-            <HeadLine title='Item Details 2'/>
-            <form onSubmit={submitHandler} className='w-[60%] mt-4  space-y-4'>
+            <HeadLine title='Item Details 2' />
+            <form onSubmit={handleSubmit(submitHandler)} className='w-[60%] mt-4  space-y-4'>
                 <Select value={item} handler={itemHandler} arry={parcelType} />
                 <Select value={weigh} handler={weightHandler} arry={weight} />
                 <div className='flex gap-3'>
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">number of items*</span></label>
                         <input value={quantity} onChange={quantityHandler} type='number' className="border border-sky-600 rounded-2xl p-2" placeholder='number' />
+                        <p className='text-red-600'>{error}</p>
                     </div>
 
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">Item Image*</span></label>
-                        <input name='image' type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs" />
-
+                        <input {...register('image', { required: true })} name='image' type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs" />
+                        {errors.img && <p className='text-red-600'>image is required</p>}
                     </div>
                 </div>
 
                 <div className='pt-6'>
-                    <button className='bg-sky-500 btn hover:bg-sky-600 w-full' type="submit">Continue <BsArrowRight/> </button>
+                    <button className='bg-sky-500 btn hover:bg-sky-600 w-full' type="submit">Continue <BsArrowRight /> </button>
                 </div>
             </form>
         </div>
@@ -120,3 +140,8 @@ const Details = () => {
 };
 
 export default Details;
+
+// {...register('quantity', { required: true, min: 1, max: 5 }) }
+// { errors.quantity?.type === 'required' && <p className="text-red-600">number of if is requird</p> }
+// { errors.quantity?.type === 'min' && <p className="text-red-600">please add a number of item minimum 1</p> }
+// { errors.quantity?.type === 'max' && <p className='text-red-600'>we Allow maximum 5 item per person</p> }
