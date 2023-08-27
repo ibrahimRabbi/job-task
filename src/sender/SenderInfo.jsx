@@ -18,7 +18,7 @@ const SenderInfo = () => {
             senderNumber: e.target.number.value,
             senderEmail: e.target.email.value
         }
-        // fetch('http://localhost:5000/location', {
+        // fetch('https://task-server-seven.vercel.app/location', {
         //     method: 'POST',
         //     headers: { 'content-type': 'application/json' },
         //     body: JSON.stringify(dataObj)

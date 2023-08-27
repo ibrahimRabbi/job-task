@@ -5,16 +5,16 @@ const useCalculateHooks = () => {
     const id = localStorage.getItem('id')
     let subTotal = 0;
 
-    const {data={},refetch } = useQuery({
+    const { data = {}, refetch } = useQuery({
         queryKey: [id],
         queryFn: async () => {
-            const fethching = await fetch(`http://localhost:5000/location/${id}`)
+            const fethching = await fetch(`https://task-server-seven.vercel.app/location/${id}`)
             const cont = await fethching.json()
             return cont
 
-        }       
+        }
     })
-     
+
 
     if (data?.distance > 30) {
         const vag = data.distance - 30
@@ -39,7 +39,7 @@ const useCalculateHooks = () => {
     }
 
 
-    return  {data, subTotal,refetch}
+    return { data, subTotal, refetch }
 };
 
 export default useCalculateHooks;

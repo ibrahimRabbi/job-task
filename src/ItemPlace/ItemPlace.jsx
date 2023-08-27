@@ -42,7 +42,7 @@ const ItemPlace = () => {
         },
     ]
     const fatchingHandler = (obj) => {
-        return fetch(`http://localhost:5000/location/${data._id}`, {
+        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(obj)
@@ -88,7 +88,7 @@ const ItemPlace = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <button onClick={btnHandler} disabled={data?.floor?false:true} className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Review <BsArrowRight /></button>
+                <button onClick={btnHandler} disabled={data?.floor ? false : true} className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Review <BsArrowRight /></button>
             </div>
         </section>
     );

@@ -14,10 +14,10 @@ const Location = () => {
     const navigate = useNavigate()
     const { data } = useCalculateHooks()
     const [loading, setLoading] = useState(true)
-const [error,setError] = useState('')
+    const [error, setError] = useState('')
     const locationHandler = (e) => {
         e.preventDefault()
-        
+
         const districtName = e.target.destination.value
         if (districtName === 'Selecet District') {
             setError('please selecet your District')
@@ -28,7 +28,7 @@ const [error,setError] = useState('')
                 districtName,
                 distance: find.distance_from_dhaka,
             }
-            fetch('http://localhost:5000/location', {
+            fetch('https://task-server-seven.vercel.app/location', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(obj)
@@ -45,7 +45,7 @@ const [error,setError] = useState('')
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/distric')
+        fetch('https://task-server-seven.vercel.app/distric')
             .then(res => res.json())
             .then(res => {
                 setDistric(res)
@@ -57,7 +57,7 @@ const [error,setError] = useState('')
     return (
         <section>
             {
-                loading ? <Roller className='mx-auto block mt-48' /> : <div className='background'>
+                loading ? <div className='h-[90vh]'><Roller className='mx-auto block mt-48' /></div> : <div className='background'>
                     <form onSubmit={locationHandler} className='mx-auto pt-24 w-[50%]'>
 
 
@@ -68,7 +68,7 @@ const [error,setError] = useState('')
                                     From : Dhaka
                                 </p>
                             </div>
- 
+
                             <select name='destination' className='w-full mr-2 bg-none outline-none p-3' required>
                                 <option selected disabled >Selecet District</option>
                                 {

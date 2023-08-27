@@ -1,11 +1,11 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './payment.css'
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../Authentication/AuthContext';
 import Swal from 'sweetalert2';
- 
+
 
 
 
@@ -19,8 +19,8 @@ const CheckoutForm = () => {
     const [clientSecret, setClientSecret] = useState("");
     const { subTotal, data } = useCalculateHooks()
     const navigate = useNavigate()
-    const {user} = useContext(Context)
- 
+    const { user } = useContext(Context)
+
     console.log()
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -46,7 +46,7 @@ const CheckoutForm = () => {
                     card,
                     billing_details: {
                         name: user?.displayName || 'unknown',
-                         email: user?.email || 'anonymouse',
+                        email: user?.email || 'anonymouse',
                     },
                 },
             },
@@ -70,25 +70,34 @@ const CheckoutForm = () => {
                 date: new Date().toDateString(),
                 district: data.districtName,
             }
-            fetch(`http://localhost:5000/summery/${data._id}`, {
+            fetch(`https://task-server-seven.vercel.app/summery/${data._id}`, {
                 method: "POST",
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(summery)
             })
                 .then(res => res.json())
                 .then(res => {
-                    
+
                     if (res.result.insertedId) {
                         Swal.fire({
-                            position: 'center',
+                            title: 'payment successfull',
+                            text: "You won't be able to revert this!",
                             icon: 'success',
-                            title: 'Payment Successfull',
-                            showConfirmButton: false,
-                            timer: 1500
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'go to Dashboard'
+                        }).then((result) => {
+                            console.log(result)
+                            if (result.isConfirmed) {
+                                navigate('/dashboard')
+                            } else {
+                                navigate('/')
+                            }
                         })
-                        navigate('/')
+                        
                     }
-                     
+
                 })
 
         };
@@ -97,7 +106,7 @@ const CheckoutForm = () => {
 
     useEffect(() => {
         if (subTotal > 0) {
-            fetch(" http://localhost:5000/create-payment-intent", {
+            fetch(" https://task-server-seven.vercel.app/create-payment-intent", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ subTotal }),
@@ -109,7 +118,7 @@ const CheckoutForm = () => {
 
     return (
         <section className='mx-auto h-[80vh]'>
-            
+
             <form className='w-1/2 mt-20 mx-auto' onSubmit={handleSubmit}>
                 <h1 className='text-lg font-semibold text-red-600'>pay: {subTotal}Tk</h1>
                 <CardElement />

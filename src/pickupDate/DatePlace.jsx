@@ -64,7 +64,7 @@ const PickupDate = () => {
     ]
 
     const fatchingHandler = (obj) => {
-        return fetch(`http://localhost:5000/location/${data._id}`, {
+        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(obj)
@@ -93,7 +93,7 @@ const PickupDate = () => {
     const btnHandler = () => {
         navigate('/step/place')
     }
- 
+
     return (
         <section className='mt-2  mb-11 ml-9'>
             <HeadLine title='when we pickup and delivery 3' />
@@ -114,7 +114,7 @@ const PickupDate = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <button disabled={data?.date?false:true} onClick={btnHandler}  className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Continue <BsArrowRight /></button>
+                <button disabled={data?.date ? false : true} onClick={btnHandler} className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Continue <BsArrowRight /></button>
             </div>
         </section>
     );

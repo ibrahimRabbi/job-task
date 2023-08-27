@@ -7,9 +7,9 @@ const Dashboard = () => {
     const { user } = useContext(Context)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/summery?email=${user?.email}`)
+        fetch(`https://task-server-seven.vercel.app/summery?email=${user?.email}`)
             .then(res => res.json())
-        .then(res=>setSummeryData(res))
+            .then(res => setSummeryData(res))
     }, [])
 
     console.log(summeryData)
@@ -23,14 +23,14 @@ const Dashboard = () => {
                         <tr className='text-sm'>
                             <th>S.N</th>
                             <th>Payment</th>
-                            <th>Transection ID</th>   
+                            <th>Transection ID</th>
                             <th>District Name</th>
                             <th>payment date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            summeryData.map((v,index) => {
+                            summeryData.map((v, index) => {
                                 return (
                                     <tr key={v._id}>
                                         <th>{index + 1}</th>
@@ -41,7 +41,7 @@ const Dashboard = () => {
                                     </tr>
                                 )
                             })
-                       }
+                        }
                     </tbody>
                 </table>
             </div>
