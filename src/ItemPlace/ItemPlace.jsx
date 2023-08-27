@@ -71,9 +71,9 @@ const ItemPlace = () => {
     }
 
     return (
-        <section className='mt-8 ml-9'>
+        <section className=' ml-9'>
             <HeadLine title='where are the item' />
-            <div className=' w-[70%]'>
+            <div className='mt-7 w-[70%]'>
                 {
                     heightDetails.map(v => {
                         return (

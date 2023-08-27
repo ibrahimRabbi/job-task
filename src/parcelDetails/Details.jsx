@@ -113,7 +113,7 @@ const Details = () => {
 
     return (
         <div className='pl-36'>
-            <HeadLine title='Item Details ' />
+            <HeadLine title='Item Details'/>
             <form onSubmit={handleSubmit(submitHandler)} className='w-[60%]  space-y-4'>
                 <Select value={item} handler={itemHandler} arry={parcelType} />
                 <Select value={weigh} handler={weightHandler} arry={weight} />

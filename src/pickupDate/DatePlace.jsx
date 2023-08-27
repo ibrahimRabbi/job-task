@@ -95,9 +95,9 @@ const PickupDate = () => {
     }
 
     return (
-        <section className='mt-10 ml-9'>
+        <section className=' ml-9'>
             <HeadLine title='when we pickup and delivery'/>
-            <div className=' w-[70%]'>
+            <div className=' mt-7 w-[70%]'>
                 {
                     arry.map(v => {
                         return (
