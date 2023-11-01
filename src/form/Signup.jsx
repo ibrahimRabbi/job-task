@@ -44,7 +44,7 @@ const SignUp = () => {
                             .then(res => {
                                 setLoad(true)
                                 profile(res.user, name, img, number)
-                                fetch('https://task-server-seven.vercel.app/user', {
+                                fetch('http://localhost:3000/user', {
                                     method: "POST",
                                     headers: { 'content-type': 'application/json' },
                                     body: JSON.stringify(userObj)
@@ -174,32 +174,32 @@ export default SignUp;
 
 
 
-    //  signup(email, password)
-    //             .then(res => {
-    //                 profile(res.user, name, image)
-    //                 setError('')
-    //                 fetch('https://task-server-seven.vercel.app/user', {
-    //                     method: "POST",
-    //                     headers: { 'content-type': 'application/json' },
-    //                     body: JSON.stringify(userObj)
-    //                 })
-    //                     .then(res => res.json())
-    //                     .then(res => {
-    //                         if (res.insertedId) {
-    //                             Swal.fire({
-    //                                 title: 'registation Successfull',
-    //                                 text: 'now you can access any kind of information',
-    //                                 icon: 'success',
-    //                                 confirmButtonText: 'Okay'
-    //                             })
-    //                             navigate('/')
-    //                         }
-    //                     })
+//  signup(email, password)
+//             .then(res => {
+//                 profile(res.user, name, image)
+//                 setError('')
+//                 fetch('http://localhost:3000/user', {
+//                     method: "POST",
+//                     headers: { 'content-type': 'application/json' },
+//                     body: JSON.stringify(userObj)
+//                 })
+//                     .then(res => res.json())
+//                     .then(res => {
+//                         if (res.insertedId) {
+//                             Swal.fire({
+//                                 title: 'registation Successfull',
+//                                 text: 'now you can access any kind of information',
+//                                 icon: 'success',
+//                                 confirmButtonText: 'Okay'
+//                             })
+//                             navigate('/')
+//                         }
+//                     })
 
-    //             })
-    //             .catch(error => {
-    //                 if (error.message == "Firebase: Error (auth/email-already-in-use).") {
-    //                     setError('this email already have an account')
-    //                 }
-    //             })
-    //     }
+//             })
+//             .catch(error => {
+//                 if (error.message == "Firebase: Error (auth/email-already-in-use).") {
+//                     setError('this email already have an account')
+//                 }
+//             })
+//     }

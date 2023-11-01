@@ -70,7 +70,7 @@ const CheckoutForm = () => {
                 date: new Date().toDateString(),
                 district: data.districtName,
             }
-            fetch(`https://task-server-seven.vercel.app/summery/${data._id}`, {
+            fetch(`http://localhost:3000/summery/${data._id}`, {
                 method: "POST",
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(summery)
@@ -95,7 +95,7 @@ const CheckoutForm = () => {
                                 navigate('/')
                             }
                         })
-                        
+
                     }
 
                 })
@@ -106,7 +106,7 @@ const CheckoutForm = () => {
 
     useEffect(() => {
         if (subTotal > 0) {
-            fetch(" https://task-server-seven.vercel.app/create-payment-intent", {
+            fetch(" http://localhost:3000/create-payment-intent", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ subTotal }),

@@ -7,7 +7,7 @@ const Dashboard = () => {
     const { user } = useContext(Context)
 
     useEffect(() => {
-        fetch(`https://task-server-seven.vercel.app/summery?email=${user?.email}`)
+        fetch(`http://localhost:3000/summery?email=${user?.email}`)
             .then(res => res.json())
             .then(res => setSummeryData(res))
     }, [])

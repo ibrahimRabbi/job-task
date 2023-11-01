@@ -25,7 +25,7 @@ const Details = () => {
 
 
     const fatchingHandler = (obj) => {
-        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
+        return fetch(`http://localhost:3000/location/${data._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(obj)
@@ -113,26 +113,26 @@ const Details = () => {
 
     return (
         <div className='pl-36'>
-            <HeadLine title='Item Details'/>
+            <HeadLine title='Item Details' />
             <form onSubmit={handleSubmit(submitHandler)} className='w-[60%]  space-y-4'>
                 <Select value={item} handler={itemHandler} arry={parcelType} />
                 <Select value={weigh} handler={weightHandler} arry={weight} />
                 <div className='flex gap-3'>
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">number of items*</span></label>
-                        <input value={quantity} onChange={quantityHandler} type='number' className="border border-amber-600 rounded-2xl p-2" placeholder='number' />
+                        <input value={quantity} onChange={quantityHandler} type='number' className="border border-green-600 rounded-2xl p-2" placeholder='number' />
                         <p className='text-red-600'>{error}</p>
                     </div>
 
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">Item Image*</span></label>
-                        <input {...register('image', { required: true })} name='image' type="file" className="file-input file-input-bordered file-input-warning w-full max-w-xs" />
+                        <input {...register('image', { required: true })} name='image' type="file" className="file-input file-input-bordered file-input-success w-full max-w-xs"/>
                         {errors.img && <p className='text-red-600'>image is required</p>}
                     </div>
                 </div>
 
                 <div className='pt-6'>
-                    <button className='bg-amber-500 btn hover:bg-amber-500 w-full' type="submit">Continue <BsArrowRight /> </button>
+                    <button className='bg-green-500 btn hover:bg-green-600 w-full' type="submit">Continue <BsArrowRight /> </button>
                 </div>
             </form>
         </div>

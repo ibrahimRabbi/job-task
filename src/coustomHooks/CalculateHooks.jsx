@@ -8,10 +8,9 @@ const useCalculateHooks = () => {
     const { data = {}, refetch } = useQuery({
         queryKey: [id],
         queryFn: async () => {
-            const fethching = await fetch(`https://task-server-seven.vercel.app/location/${id}`)
+            const fethching = await fetch(`http://localhost:3000/location/${id}`)
             const cont = await fethching.json()
             return cont
-
         }
     })
 

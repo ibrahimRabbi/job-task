@@ -28,42 +28,36 @@ function App() {
           path: '/',
           element:<Home/>
         },
-        {
-          path: '/location',
-          element:<Location/>
-        },
+        
         {
           path: '/step',
           element: <StepLayout />,
-          children: [  
+          children: [
             {
               path: '/step',
-              element: <Details/>
+              element: <Details />
             },
             {
               path: 'date',
-              element: <PickupDate/>
+              element: <PickupDate />
             },
             {
               path: 'place',
-              element:<ItemPlace/>
+              element: <ItemPlace />
             }
           ]
+
         },
         {
           path: 'review',
-          element: <Review/> ,
-        },
-        {
-          path: 'payment',
-          element: <PrivetRoute><Payment/></PrivetRoute>
+          element: <Review />,
         },
         {
           path: 'dashboard',
-          element:<Dashboard/>
+          element: <Dashboard />
         }
+       
       ]
-
     },
     {
       path: '/signup',
@@ -72,7 +66,12 @@ function App() {
     {
       path: '/signin',
       element:<Signin/>
-    }
+    },
+    {
+      path: 'payment',
+      element: <PrivetRoute><Payment /></PrivetRoute>
+    },
+    
   ])
   
 
@@ -86,3 +85,29 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+        
+
+
+
+
+

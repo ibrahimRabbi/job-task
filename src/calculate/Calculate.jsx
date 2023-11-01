@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BsArrowLeftRight } from "react-icons/bs";
+import { FaArrowRight } from "react-icons/fa";
 import useCalculateHooks from '../coustomHooks/CalculateHooks';
 
 const Calculate = () => {
@@ -9,11 +9,11 @@ const Calculate = () => {
 
 
     return (
-        <div className='bg-gradient-to-tl from-amber-500  to-amber-300  p-5 rounded-lg h-[60vh] sticky top-10'>
-            <div className='flex justify-between items-center mt-2 text-sky-800 font-semibold w-[90%] text-xl mx-auto'>
-                <p>FROM: Dhaka</p>
-                <BsArrowLeftRight />
-                <p>TO: {data.districtName}</p>
+        <div className='bg-gradient-to-tl border bg-green-50 p-4 rounded-lg h-[60vh] sticky top-10'>
+            <div className='flex justify-between items-center mt-2 text-green-900 font-semibold w-[90%] text-xl mx-auto'>
+                <p>From : Dhaka</p>
+                <FaArrowRight />
+                <p>{data.districtName}</p>
             </div>
             <div>
                 {
@@ -35,8 +35,8 @@ const Calculate = () => {
                  
             </div>
             <div className='mt-11'>
-                <hr className='border-2 border-blue-600 ' />
-                <h1 className='text-2xl font-semibold mt-2'>Sub Total : {subTotal}-TK</h1>
+                <hr className='border-2 border-green-700 ' />
+                <h1 className='text-2xl text-red-600 font-semibold mt-2'>Sub Total : {subTotal}-TK</h1>
             </div>
         </div>
     );

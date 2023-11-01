@@ -64,7 +64,7 @@ const PickupDate = () => {
     ]
 
     const fatchingHandler = (obj) => {
-        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
+        return fetch(`http://localhost:3000/location/${data._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(obj)
@@ -96,12 +96,12 @@ const PickupDate = () => {
 
     return (
         <section className=' ml-9'>
-            <HeadLine title='when we pickup and delivery'/>
+            <HeadLine title='when we pickup and delivery' />
             <div className=' mt-7 w-[70%]'>
                 {
                     arry.map(v => {
                         return (
-                            <div onClick={() => clickHandler(v)} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer ${data?.date?.date === v.date ? 'bg-amber-400' : 'bg-white'} hover:bg-slate-200 duration-75 p-3 mt-3 font-semibold`}>
+                            <div onClick={() => clickHandler(v)} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer ${data?.date?.date === v.date ? 'bg-[#0AC041]' : 'bg-white'} hover:bg-slate-200 duration-75 p-3 mt-3 font-semibold`}>
                                 <div className='flex gap-2 items-center'>
 
                                     <p>{v.dayDate} {v.date}</p>
@@ -114,7 +114,7 @@ const PickupDate = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <button disabled={data?.date ? false : true} onClick={btnHandler} className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Continue <BsArrowRight /></button>
+                <button disabled={data?.date ? false : true} onClick={btnHandler} className='bg-[#0AC041] btn hover:bg-[#3aa53f] w-[45%]'>Continue <BsArrowRight /></button>
             </div>
         </section>
     );

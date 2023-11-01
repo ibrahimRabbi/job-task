@@ -42,7 +42,7 @@ const ItemPlace = () => {
         },
     ]
     const fatchingHandler = (obj) => {
-        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
+        return fetch(`http://localhost:3000/location/${data._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(obj)
@@ -77,7 +77,7 @@ const ItemPlace = () => {
                 {
                     heightDetails.map(v => {
                         return (
-                            <div onClick={() => { clickHandler(v) }} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer hover:bg-slate-200 duration-75 ${data?.floor?.floor === v.floor ? 'bg-amber-400' : 'bg-white'} p-3 mt-3 font-semibold`}>
+                            <div onClick={() => { clickHandler(v) }} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer hover:bg-slate-200 duration-75 ${data?.floor?.floor === v.floor ? 'bg-[#0AC041]' : 'bg-white'} p-3 mt-3 font-semibold`}>
                                 <div className='flex gap-2 items-center'>
                                     <p>{v.floor}</p>
                                 </div>
@@ -88,7 +88,7 @@ const ItemPlace = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <button onClick={btnHandler} disabled={data?.floor ? false : true} className='bg-amber-500 btn hover:bg-amber-600 w-[45%]'>Review <BsArrowRight /></button>
+                <button onClick={btnHandler} disabled={data?.floor ? false : true} className='bg-[#0AC041] btn hover:bg-[#46ca58] w-[45%]'>Review <BsArrowRight /></button>
             </div>
         </section>
     );
