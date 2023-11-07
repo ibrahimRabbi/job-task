@@ -25,7 +25,7 @@ const Details = () => {
 
 
     const fatchingHandler = (obj) => {
-        return fetch(`http://localhost:3000/location/${data._id}`, {
+        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(obj)
@@ -126,7 +126,7 @@ const Details = () => {
 
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">Item Image*</span></label>
-                        <input {...register('image', { required: true })} name='image' type="file" className="file-input file-input-bordered file-input-success w-full max-w-xs"/>
+                        <input {...register('image', { required: true })} name='image' type="file" className="file-input file-input-bordered file-input-success w-full max-w-xs" />
                         {errors.img && <p className='text-red-600'>image is required</p>}
                     </div>
                 </div>

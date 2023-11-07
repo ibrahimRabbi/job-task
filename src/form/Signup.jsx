@@ -44,7 +44,7 @@ const SignUp = () => {
                             .then(res => {
                                 setLoad(true)
                                 profile(res.user, name, img, number)
-                                fetch('http://localhost:3000/user', {
+                                fetch('https://task-server-seven.vercel.app/user', {
                                     method: "POST",
                                     headers: { 'content-type': 'application/json' },
                                     body: JSON.stringify(userObj)
@@ -178,7 +178,7 @@ export default SignUp;
 //             .then(res => {
 //                 profile(res.user, name, image)
 //                 setError('')
-//                 fetch('http://localhost:3000/user', {
+//                 fetch('https://task-server-seven.vercel.app/user', {
 //                     method: "POST",
 //                     headers: { 'content-type': 'application/json' },
 //                     body: JSON.stringify(userObj)

@@ -42,7 +42,7 @@ const ItemPlace = () => {
         },
     ]
     const fatchingHandler = (obj) => {
-        return fetch(`http://localhost:3000/location/${data._id}`, {
+        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(obj)

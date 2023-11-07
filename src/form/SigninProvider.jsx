@@ -16,7 +16,7 @@ const SigninProvider = ({ redirect }) => {
     const googleHandler = () => {
         signinGoogle()
             .then(res => {
-                fetch(' http://localhost:3000/user', {
+                fetch(' https://task-server-seven.vercel.app/user', {
                     method: "POST",
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({ email: res.user.email, name: res.user.displayName })

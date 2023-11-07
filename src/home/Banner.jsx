@@ -1,8 +1,13 @@
 import React from 'react';
 import './home.css';
 import { Link } from 'react-router-dom';
-import { BsSend } from 'react-icons/bs'
+ 
+
+
 const Banner = () => {
+
+    
+    
     return (
         <section className="w-full bg-green-50">
             <div className='w-[90%] mx-auto flex justify-between items-center'>

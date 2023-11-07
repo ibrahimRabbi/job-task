@@ -1,18 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
+import { useLocationDataQuery } from "../redux/getDataApi";
+
 
 
 const useCalculateHooks = () => {
     const id = localStorage.getItem('id')
     let subTotal = 0;
+    const { data = {}, refetch } = useLocationDataQuery(id)
 
-    const { data = {}, refetch } = useQuery({
-        queryKey: [id],
-        queryFn: async () => {
-            const fethching = await fetch(`http://localhost:3000/location/${id}`)
-            const cont = await fethching.json()
-            return cont
-        }
-    })
 
 
     if (data?.distance > 30) {

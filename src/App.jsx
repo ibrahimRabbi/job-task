@@ -1,8 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
 import Layout from "./layout/Layout"
 import Home from "./home/Home"
-import Location from "./location/Location"
 import StepLayout from "./layout/StepLayout"
 import Details from "./parcelDetails/Details"
 import PickupDate from "./pickupDate/DatePlace"
@@ -14,11 +12,15 @@ import AuthContext from "./Authentication/AuthContext"
 import PrivetRoute from "./privetRoute/PrivetRoute"
 import Signin from "./form/Signin"
 import Dashboard from "./Dashboard/Dashboard"
+import { Provider } from "react-redux"
+import store from "./Redux/store"
+ 
+ 
 
  
 
 function App() {
-  const queryClient = new QueryClient()
+  
   const router = createBrowserRouter([
     {
       path: '/',
@@ -76,11 +78,11 @@ function App() {
   
 
   return (
-    <AuthContext>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </AuthContext>
+      <AuthContext>
+        <Provider store={store}>
+          <RouterProvider router={router} />
+         </Provider>
+      </AuthContext>
   )
 }
 

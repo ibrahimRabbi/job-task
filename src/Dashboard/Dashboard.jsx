@@ -1,25 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../Authentication/AuthContext';
+import { useDeshboardQuery } from '../redux/getDataApi';
 
 const Dashboard = () => {
-
-    const [summeryData, setSummeryData] = useState([])
     const { user } = useContext(Context)
+    const {data=[]} = useDeshboardQuery(user?.email)
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/summery?email=${user?.email}`)
-            .then(res => res.json())
-            .then(res => setSummeryData(res))
-    }, [])
+     
 
-    console.log(summeryData)
+   
     return (
-        <section className='w-[90%] mx-auto mt-11'>
+        <section className='w-[90%] mx-auto pt-11 pb-96'>
             <h1 className='font-semibold text-xl mb-2'>Pick Up & Payment History:</h1>
             <div className="overflow-x-auto ">
                 <table className="table">
                     {/* head */}
-                    <thead className='bg-sky-500'>
+                    <thead className='bg-green-500'>
                         <tr className='text-sm'>
                             <th>S.N</th>
                             <th>Payment</th>
@@ -30,7 +26,7 @@ const Dashboard = () => {
                     </thead>
                     <tbody>
                         {
-                            summeryData.map((v, index) => {
+                            data.map((v, index) => {
                                 return (
                                     <tr key={v._id}>
                                         <th>{index + 1}</th>
