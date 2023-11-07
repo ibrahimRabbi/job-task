@@ -1,58 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs'
-import { useNavigate } from 'react-router-dom';
+import { Navigate} from 'react-router-dom';
 import { ImLocation2 } from 'react-icons/im'
-import { useDistrictDataQuery } from '../redux/getDataApi';
+import { useDistrictDataQuery, useLocationMutation } from '../redux/getDataApi';
 
 
 
 const Location = () => {
 
-    const navigate = useNavigate()
-    const [error, setError] = useState('')
     const [desabled, setdesabled] = useState(true)
     const { data: distric = [] } = useDistrictDataQuery()
-
-
-
+    const [setData, { data }] = useLocationMutation()
 
     const changeHandler = (e) => {
         if (e.target.value) {
             setdesabled(false)
         }
     }
+
     const locationHandler = (e) => {
         e.preventDefault()
-        const districtName = e.target.destination.value
-        if (districtName === 'Selecet District') {
-            setError('please selecet your District')
-        } else {
-            setError('')
-            const find = distric.find(v => v.district === districtName)
-            const obj = {
-                districtName,
-                distance: find.distance_from_dhaka,
-            }
-            fetch('https://task-server-seven.vercel.app/location', {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(obj)
-            })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.insertedId) {
-                        localStorage.setItem('id', res.insertedId)
-                        navigate('/step')
-                    }
-                })
+        const find = distric.find(v => v.district === districtName)
+        const obj = {
+            districtName,
+            distance: find.distance_from_dhaka,
         }
-
+        setData(obj)
     }
-
 
 
     if (distric.length < 1) {
         return <div className='h-[90vh]'><h1 className='text-2xl'>data is Loading</h1></div>
+    }
+
+    if (data?.insertedId) {
+        localStorage.setItem('id', data.insertedId)
+        return <Navigate to='/step' />
     }
 
 
@@ -76,7 +59,6 @@ const Location = () => {
                             }
                         </select>
                     </div>
-                    <p className='text-red-600 font-semibold text-lg'>{error}</p>
                     <button disabled={desabled} type='submit' className='bg-[#0AC041] btn mt-7 text-center mx-auto flex items-center gap-1 text-zinc-900 px-10  py-2 rounded-lg hover:bg-[#0BA636]'>Calculate  price <BsArrowRight /></button>
                 </form>
             </div>

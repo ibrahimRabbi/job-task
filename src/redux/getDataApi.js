@@ -12,11 +12,33 @@ export const allData = createApi({
         }),
         deshboard: build.query({
             query: (email) => `/summery?email=${email}`
-        })
+        }),
+
+        siginup: build.mutation({
+            query: (data) => ({
+                url: '/user',
+                method: 'POST',
+                body : data
+            })
+        }),
+
+        location: build.mutation({
+            query: (data) => ({
+                url: '/location',
+                method: 'POST',
+                body: data
+            })
+        }),
+
+
+
+
+
+
     })
 })
 
-export const {useLocationDataQuery,useDistrictDataQuery,useDeshboardQuery} = allData
+export const {useLocationDataQuery,useDistrictDataQuery,useDeshboardQuery,useSiginupMutation,useLocationMutation} = allData
 
 
 

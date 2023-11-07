@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { Context } from "../Authentication/AuthContext";
 import SigninProvider from "./SigninProvider";
 import { Roller } from "react-spinners-css";
+import { useSiginupMutation } from "../redux/getDataApi";
 
 
 
@@ -17,7 +18,7 @@ const SignUp = () => {
     const navigate = useNavigate()
     const [error, setError] = useState('')
     const [load, setLoad] = useState(false)
-
+    const [setData, { data:settingData }] = useSiginupMutation()
 
     const submit = (data) => {
 
@@ -28,7 +29,8 @@ const SignUp = () => {
 
         if (password !== confirm) {
             setError('confirm password doesnt match')
-        } else {
+        }
+        else {
             setError('')
             setLoad(true)
             const userObj = { email, password, name, number }
@@ -44,26 +46,16 @@ const SignUp = () => {
                             .then(res => {
                                 setLoad(true)
                                 profile(res.user, name, img, number)
-                                fetch('https://task-server-seven.vercel.app/user', {
-                                    method: "POST",
-                                    headers: { 'content-type': 'application/json' },
-                                    body: JSON.stringify(userObj)
-                                })
-                                    .then(res => res.json())
-                                    .then(res => {
-                                        setLoad(false)
-                                        if (res.insertedId) {
-                                            Swal.fire({
-                                                position: 'center',
-                                                icon: 'success',
-                                                title: 'Sign up Successfull',
-                                                showConfirmButton: false,
-                                                timer: 1500
-                                            })
-                                            navigate('/')
-                                        }
+                                setData(userObj)  
+                                setLoad(false)
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'Sign up Successfull',
+                                        showConfirmButton: false,
+                                        timer: 1500
                                     })
-
+                                    navigate('/')
                             })
                             .catch(error => {
                                 setLoad(false)
@@ -75,12 +67,13 @@ const SignUp = () => {
                 })
 
         }
+
     }
 
-    if (load) {
+
+    if (load && !settingData?.insertedId) {
         return <Roller className="mt-48 block mx-auto" />
     }
-
 
     return (
         <section>
