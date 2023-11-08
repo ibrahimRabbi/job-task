@@ -6,6 +6,7 @@ import HeadLine from '../utility/HeadLine';
 import Select from '../utility/Select';
 import { useForm } from 'react-hook-form'
 import { Roller } from 'react-spinners-css';
+//import { useDetailsMutation } from '../redux/getDataApi';
 
 
 const Details = () => {
@@ -22,7 +23,7 @@ const Details = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-
+    //const [setData, { data: returnData }] = useDetailsMutation()
 
     const fatchingHandler = (obj) => {
         return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
@@ -33,8 +34,11 @@ const Details = () => {
 
     }
 
+    
+
     const itemHandler = (e) => {
         setItem(e.target.value)
+        //setData({ id: data._id, obj: { itemType: e.target.value } })
         fatchingHandler({ itemType: e.target.value })
             .then(res => res.json())
             .then(res => {
@@ -43,6 +47,8 @@ const Details = () => {
                 }
             })
     }
+
+     
 
     const weightHandler = (e) => {
         setWeight(e.target.value)

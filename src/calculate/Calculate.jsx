@@ -12,7 +12,7 @@ const Calculate = () => {
         <div className='bg-gradient-to-tl border bg-green-50 p-4 rounded-lg h-[60vh] sticky top-10'>
             <div className='flex justify-between items-center mt-2 text-green-900 font-semibold w-[90%] text-xl mx-auto'>
                 <p>From : Dhaka</p>
-                <FaArrowRight />
+                <FaArrowRight/>
                 <p>{data.districtName}</p>
             </div>
             <div>

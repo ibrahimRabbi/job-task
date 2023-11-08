@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs'
-import { Navigate} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { ImLocation2 } from 'react-icons/im'
 import { useDistrictDataQuery, useLocationMutation } from '../redux/getDataApi';
 
@@ -12,6 +12,7 @@ const Location = () => {
     const { data: distric = [] } = useDistrictDataQuery()
     const [setData, { data }] = useLocationMutation()
 
+
     const changeHandler = (e) => {
         if (e.target.value) {
             setdesabled(false)
@@ -20,6 +21,7 @@ const Location = () => {
 
     const locationHandler = (e) => {
         e.preventDefault()
+        const districtName = e.target.destination.value;
         const find = distric.find(v => v.district === districtName)
         const obj = {
             districtName,

@@ -1,7 +1,6 @@
 import { useLocationDataQuery } from "../redux/getDataApi";
 
 
-
 const useCalculateHooks = () => {
     const id = localStorage.getItem('id')
     let subTotal = 0;

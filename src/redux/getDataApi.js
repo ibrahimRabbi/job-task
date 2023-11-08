@@ -30,15 +30,18 @@ export const allData = createApi({
             })
         }),
 
-
-
-
-
+        // details: build.mutation({
+        //     query: ({ id, obj }) => ({
+        //         url: `/location/${id}`,
+        //         method: 'PATCH',
+        //         body : obj
+        //     })
+        // })
 
     })
 })
 
-export const {useLocationDataQuery,useDistrictDataQuery,useDeshboardQuery,useSiginupMutation,useLocationMutation} = allData
+export const {useLocationDataQuery,useDistrictDataQuery,useDeshboardQuery,useSiginupMutation,useLocationMutation,useDetailsMutation} = allData
 
 
 
