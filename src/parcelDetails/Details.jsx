@@ -6,7 +6,7 @@ import HeadLine from '../utility/HeadLine';
 import Select from '../utility/Select';
 import { useForm } from 'react-hook-form'
 import { Roller } from 'react-spinners-css';
-//import { useDetailsMutation } from '../redux/getDataApi';
+import { useParcelMutation } from '../redux/getDataApi';
 
 
 const Details = () => {
@@ -17,72 +17,42 @@ const Details = () => {
 
     const [item, setItem] = useState('')
     const [weigh, setWeight] = useState(1)
-    const [quantity, setQunty] = useState('')
-    const { refetch, data } = useCalculateHooks()
+    const { refetch, data: fetchData } = useCalculateHooks()
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    //const [setData, { data: returnData }] = useDetailsMutation()
+    const [setData, { data: returnData }] = useParcelMutation()
 
-    const fatchingHandler = (obj) => {
-        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
-            method: 'PATCH',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(obj)
-        })
-
-    }
-
-    
-
-    const itemHandler = (e) => {
+    const itemHandler = async (e) => {
         setItem(e.target.value)
-        //setData({ id: data._id, obj: { itemType: e.target.value } })
-        fatchingHandler({ itemType: e.target.value })
-            .then(res => res.json())
-            .then(res => {
-                if (res.modifiedCount > 0) {
-                    refetch()
-                }
-            })
+        await setData({ id: fetchData._id, obj: { itemType: e.target.value } })
+        await refetch()
     }
 
-     
 
-    const weightHandler = (e) => {
+    const weightHandler = async (e) => {
+
         setWeight(e.target.value)
         const value = e.target.value
         const split = value.split('-')
-        fatchingHandler({ weight: parseInt(split[0]) })
-            .then(res => res.json())
-            .then(res => {
-                if (res.modifiedCount > 0) {
-                    refetch()
-                }
-            })
+        await setData({ id: fetchData._id, obj: { weight: parseInt(split[0]) } })
+        await refetch()
     }
 
-    const quantityHandler = (e) => {
-        setQunty(e.target.value)
-        const data = parseInt(e.target.value)
-        if (data === 0) {
+    const quantityHandler = async (e) => {
+        const value = parseInt(e.target.value)
+        if (value === 0) {
             setError('please add a number of item minimum 1')
-        } else if (data >= 6) {
+        } else if (value >= 6) {
             setError('we are allow only 5 pakage number of item per person')
         } else if (e.target.value === '') {
             setError('number of item is required')
         } else {
             setError('')
-            fatchingHandler({ quantity: e.target.value })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.modifiedCount > 0) {
-                        refetch()
-                    }
-                })
+            await setData({ id: fetchData._id, obj: { quantity: value } })
+            await refetch()
         }
-
     }
 
 
@@ -97,16 +67,11 @@ const Details = () => {
             body: formData
         })
             .then(res => res.json())
-            .then(res => {
+            .then(async res => {
                 const img = res.data.url
-                fatchingHandler({ image: img })
-                    .then(res => res.json())
-                    .then(res => {
-                        if (res.modifiedCount > 0) {
-                            setLoading(false)
-                            navigate('date')
-                        }
-                    })
+                await setData({ id: fetchData._id, obj: { image: img } })
+                setLoading(false)
+                navigate('date')        
 
             })
 
@@ -126,7 +91,7 @@ const Details = () => {
                 <div className='flex gap-3'>
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">number of items*</span></label>
-                        <input value={quantity} onChange={quantityHandler} type='number' className="border border-green-600 rounded-2xl p-2" placeholder='number' />
+                        <input name='quantity' onChange={quantityHandler} type='number' className="border border-green-600 rounded-2xl p-2" placeholder='number' />
                         <p className='text-red-600'>{error}</p>
                     </div>
 

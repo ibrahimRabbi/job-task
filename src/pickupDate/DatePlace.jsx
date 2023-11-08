@@ -4,9 +4,11 @@ import useCalculateHooks from '../coustomHooks/CalculateHooks';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 import { Roller } from 'react-spinners-css';
+import { useParcelMutation } from '../redux/getDataApi';
 
 const PickupDate = () => {
-    const { data, refetch } = useCalculateHooks()
+    const { data: fetchData, refetch } = useCalculateHooks()
+    const [setData, { data: returnData }] = useParcelMutation()
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const ref = useRef(null)
@@ -63,26 +65,12 @@ const PickupDate = () => {
 
     ]
 
-    const fatchingHandler = (obj) => {
-        return fetch(`https://task-server-seven.vercel.app/location/${data._id}`, {
-            method: 'PATCH',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(obj)
-        })
-
-    }
-
-
-    const clickHandler = (data) => {
+    const clickHandler = async (data) => {
         setLoading(true)
-        fatchingHandler({ date: data })
-            .then(res => res.json())
-            .then(res => {
-                if (res.modifiedCount > 0) {
-                    refetch()
-                    setLoading(false)
-                }
-            })
+        await setData({ id: fetchData._id, obj: { date: data } })
+        await refetch()
+        setLoading(false)
+
     }
 
 
@@ -101,7 +89,7 @@ const PickupDate = () => {
                 {
                     arry.map(v => {
                         return (
-                            <div onClick={() => clickHandler(v)} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer ${data?.date?.date === v.date ? 'bg-[#0AC041]' : 'bg-white'} hover:bg-slate-200 duration-75 p-3 mt-3 font-semibold`}>
+                            <div onClick={() => clickHandler(v)} key={Math.random()} className={`flex justify-between items-center border rounded-lg cursor-pointer ${fetchData?.date?.date === v.date ? 'bg-[#0AC041]' : 'bg-white'} hover:bg-slate-200 duration-75 p-3 mt-3 font-semibold`}>
                                 <div className='flex gap-2 items-center'>
 
                                     <p>{v.dayDate} {v.date}</p>
@@ -114,7 +102,7 @@ const PickupDate = () => {
                 }
             </div>
             <div className='text-center mt-7 w-[70%]'>
-                <button disabled={data?.date ? false : true} onClick={btnHandler} className='bg-[#0AC041] btn hover:bg-[#3aa53f] w-[45%]'>Continue <BsArrowRight /></button>
+                <button disabled={fetchData?.date ? false : true} onClick={btnHandler} className='bg-[#0AC041] btn hover:bg-[#3aa53f] w-[45%]'>Continue <BsArrowRight /></button>
             </div>
         </section>
     );
