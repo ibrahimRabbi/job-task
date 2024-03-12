@@ -57,7 +57,7 @@ const Signin = () => {
 
     return (
         <section>
-            <div className="mt-10 w-1/2 mx-auto ">
+            <div className="mt-10 lg:w-1/2 w-[98%] mx-auto ">
                 <div className="w-[70%] mx-auto text-sky-600">
                     <h1 className="text-4xl font-semibold text-center">Sign In</h1>
                     <hr className="mt-3" />

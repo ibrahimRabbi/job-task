@@ -18,7 +18,7 @@ const SignUp = () => {
     const navigate = useNavigate()
     const [error, setError] = useState('')
     const [load, setLoad] = useState(false)
-    const [setData, { data:settingData }] = useSiginupMutation()
+    const [setData, { data: settingData }] = useSiginupMutation()
 
     const submit = (data) => {
 
@@ -46,16 +46,16 @@ const SignUp = () => {
                             .then(res => {
                                 setLoad(true)
                                 profile(res.user, name, img, number)
-                                setData(userObj)  
+                                setData(userObj)
                                 setLoad(false)
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'Sign up Successfull',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                    navigate('/')
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Sign up Successfull',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                navigate('/')
                             })
                             .catch(error => {
                                 setLoad(false)
@@ -79,13 +79,13 @@ const SignUp = () => {
         <section>
 
 
-            <div className="my-10 mx-auto w-1/2">
+            <div className="my-10 mx-auto lg:w-1/2 w-[95%]">
                 <div className="w-[70%] mx-auto text-sky-600">
                     <h1 className="text-4xl font-semibold text-center">Create a new account</h1>
                     <hr className="mt-3" />
                 </div>
                 <form className="space-y-5 mt-7" onSubmit={handleSubmit(submit)}>
-                    <div className="grid grid-cols-2 gap-5">
+                    <div className="lg:grid grid-cols-2 gap-5">
                         <div className="form-control w-full">
                             <label className="label"><span className="label-text">Enter your full name*</span></label>
                             <input
