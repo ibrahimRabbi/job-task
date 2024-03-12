@@ -4,12 +4,12 @@ import { Outlet, useLocation } from 'react-router-dom';
 import './layout.css'
 
 const StepLayout = () => {
-    
+
     return (
-        <main className='layout py-16 relative'>
-             <Outlet/>
-            <Calculate/>
-         </main>
+        <main className='layout  lg:py-16 py-14 relative'>
+            <Outlet />
+            <Calculate />
+        </main>
     );
 };
 

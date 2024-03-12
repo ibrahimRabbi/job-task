@@ -83,9 +83,9 @@ const PickupDate = () => {
     }
 
     return (
-        <section className=' ml-9'>
+        <section className='lg:ml-9'>
             <HeadLine title='when we pickup and delivery' />
-            <div className=' mt-7 w-[70%]'>
+            <div className=' mt-7 lg:w-[70%]'>
                 {
                     arry.map(v => {
                         return (
@@ -101,7 +101,7 @@ const PickupDate = () => {
                     })
                 }
             </div>
-            <div className='text-center mt-7 w-[70%]'>
+            <div className='text-center mt-7 lg:w-[70%]'>
                 <button disabled={fetchData?.date ? false : true} onClick={btnHandler} className='bg-[#0AC041] btn hover:bg-[#3aa53f] w-[45%]'>Continue <BsArrowRight /></button>
             </div>
         </section>

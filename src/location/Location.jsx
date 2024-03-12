@@ -44,7 +44,7 @@ const Location = () => {
     return (
         <section id='location'>
             <div>
-                <form onSubmit={locationHandler} className=' left-80 absolute -bottom-44 w-[50%]'>
+                <form onSubmit={locationHandler} className='left-80 lg:absolute -bottom-44 lg:w-[50%] mx-auto w-[90%]'>
 
                     <div className='mt-4 flex justify-between border items-center bg-white border-green-500 rounded-md shadow-xl px-2'>
                         <div className=' p-7 flex items-center gap-2 w-full pl-2 font-semibold text-gray-700'>

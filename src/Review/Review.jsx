@@ -6,16 +6,16 @@ const Review = () => {
     const { data, subTotal } = useCalculateHooks()
 
     return (
-        <section className='w-[60%] mx-auto h-[70vh] mt-16'>
+        <section className='lg:w-[60%] w-[96%] mx-auto lg:h-[70vh] my-16'>
             <div className='border p-4'>
-                <div className='flex gap-7 '>
+                <div className='lg:flex gap-7 '>
                     <div className="avatar">
-                        <div className="w-44 rounded-xl">
+                        <div className="lg:w-44 w-full rounded-xl">
                             <img src={data.image} />
                         </div>
                     </div>
                     <div>
-                        <p className='text-2xl w-[50%] text-sky-900 font-semibold  border-b-2 pb-2'>Delivery: {data?.districtName}</p>
+                        <p className='text-2xl lg:w-[50%] text-sky-900 font-semibold  border-b-2 pb-2'>Delivery: {data?.districtName}</p>
                         <p className='font-semibold text-gray-600 mt-3'>Distance : {data?.distance}KM</p>
                         <p className='font-semibold text-gray-600'>Item type : {data?.item}</p>
                         <p className='font-semibold text-gray-600'>Item Quantity : {data?.quantity}</p>
@@ -38,7 +38,7 @@ const Review = () => {
                 <h1 className='text-4xl text-red-600 font-semibold text-center pb-3 mt-7'>Sub Total - {subTotal}TK</h1>
             </div>
 
-            <div className=' mt-7 w-[70%]'>
+            <div className='mt-7 lg:w-[70%] w-[90%]'>
                 <Link to='/payment' className='bg-amber-500 btn hover:bg-amber-500 w-[45%]'>Procced to checkout</Link>
             </div>
         </section>

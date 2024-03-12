@@ -1,18 +1,18 @@
 import React from 'react';
 import './home.css';
 import { Link } from 'react-router-dom';
- 
+
 
 
 const Banner = () => {
 
-    
-    
+
+
     return (
         <section className="w-full bg-green-50">
-            <div className='w-[90%] mx-auto flex justify-between items-center'>
+            <div className='lg:w-[90%] py-10 lg:py-0 mx-auto lg:flex justify-between items-center'>
                 <div>
-                    <h1 className='banner text-5xl text-zinc-900 font-extrabold text-center leading-tight'>
+                    <h1 className='banner lg:text-5xl text-3xl text-zinc-900 font-extrabold text-center leading-tight'>
                         DELIVERING EMOTIONS <br /> <span className='text-[#20DD59]'>WORLDWIDE </span> AND <br />ACROSS <span className='text-[#20DD59]'>64 DISTRICTS</span>  <br /> DOMESTICALLY
                     </h1>
                     <div className='flex gap-5 mt-5 justify-center'>
@@ -21,7 +21,7 @@ const Banner = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className='lg:block hidden'>
                     <img width={650} loading='lazy' src="https://i.ibb.co/r27hz9h/Mail-sent-bro-1.png" />
                 </div>
             </div>

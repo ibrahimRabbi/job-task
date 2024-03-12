@@ -63,9 +63,9 @@ const btnHandler = () => {
 }
 
 return (
-    <section className=' ml-9'>
+    <section className='lg:ml-9'>
         <HeadLine title='where are the item' />
-        <div className='mt-7 w-[70%]'>
+        <div className='mt-7 lg:w-[70%]'>
             {
                 heightDetails.map(v => {
                     return (
@@ -79,7 +79,7 @@ return (
                 })
             }
         </div>
-        <div className='text-center mt-7 w-[70%]'>
+        <div className='text-center mt-7 lg:w-[70%]'>
             <button onClick={btnHandler} disabled={fetchData?.floor ? false : true} className='bg-[#0AC041] btn hover:bg-[#46ca58] w-[45%]'>Review <BsArrowRight /></button>
         </div>
     </section>
